@@ -1,0 +1,98 @@
+---
+// About.astro — segunda dobra. Apresenta o projeto e três pilares.
+---
+<section class="about" id="about" aria-label="About the multiverse">
+  <div class="container">
+    <p class="eyebrow">// The Multiverse</p>
+    <h2>Original species, reimagined for the future of digital storytelling.</h2>
+    <p class="lead">
+      Mondo Creatures is a creative laboratory where creature design and AI art
+      collide. Every species in this universe begins as a single question:
+      <em>what if?</em>
+    </p>
+
+    <ul class="pillars">
+      <li>
+        <span class="num">01</span>
+        <h3>Original species</h3>
+        <p>Each creature is designed from scratch — no recycled archetypes, no fan fiction. A dedicated lineage, ecology and silhouette.</p>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <h3>Cinematic motion</h3>
+        <p>Vertical video first. Crafted with state-of-the-art AI pipelines and cinematic artistry, tuned for social-native attention spans.</p>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <h3>An expanding canon</h3>
+        <p>Not a one-off drop. A growing universe with regions, ecosystems and unique species — released in chapters, like a slow-burn series.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 8rem 1.5rem;
+    border-top: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  }
+  .container { max-width: var(--max-w); margin: 0 auto; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+    max-width: 18ch;
+    margin-bottom: 1.5rem;
+  }
+
+  .lead {
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    color: var(--fg-dim);
+    max-width: 60ch;
+    margin-bottom: 4rem;
+  }
+  em { color: var(--fg); font-style: italic; }
+
+  .pillars {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .pillars li {
+    padding: 2.2rem;
+    background: var(--bg);
+    transition: background 0.3s ease;
+  }
+  .pillars li:hover { background: var(--bg-3); }
+
+  .num {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+  }
+  .pillars h3 {
+    font-size: 1.25rem;
+    margin: 0.6rem 0 0.6rem;
+  }
+  .pillars p {
+    font-size: 0.95rem;
+    color: var(--fg-dim);
+  }
+</style>

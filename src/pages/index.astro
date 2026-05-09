@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Creatures from '../components/Creatures.astro';
+import Footer from '../components/Footer.astro';
+
+// Title: ~60 chars. Description: ~150-160 chars (sweet spot do Google).
+const title = 'Mondo Creatures — Sci-Fi Fantasy Worlds';
+const description = 'A sci-fi fantasy universe featuring original species and cinematic worldbuilding.';
+---
+<BaseLayout title={title} description={description}>
+  <main>
+    <Hero />
+    <About />
+    <Creatures />
+  </main>
+  <Footer />
+</BaseLayout>

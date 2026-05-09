@@ -1,0 +1,25 @@
+# Cloudflare Pages headers — proteção e cache.
+# Esse arquivo é lido automaticamente pelo Cloudflare Pages no deploy.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+# Assets versionados (build do Astro): cache longo, imutável.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imagens estáticas: 1 dia (ajuste se preferir mais agressivo).
+/*.svg
+  Cache-Control: public, max-age=86400
+/*.jpg
+  Cache-Control: public, max-age=86400
+/*.png
+  Cache-Control: public, max-age=86400
+/*.webp
+  Cache-Control: public, max-age=86400
+/*.avif
+  Cache-Control: public, max-age=86400

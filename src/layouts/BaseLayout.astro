@@ -1,0 +1,143 @@
+---
+// BaseLayout.astro — toda a base de SEO/meta/OG/JSON-LD do site mora aqui.
+// Cada página chama esse layout e passa title + description (e opcionalmente image/pathname).
+
+const SITE_URL = 'https://mondocreatures.com';
+
+const {
+  title = 'Mondo Creatures — Where hybrid life begins',
+  description = 'An expanding multiverse of hybrid creatures and alien beings. Original species, cinematic motion, a growing canon.',
+  image = '/og-image.jpg',
+  pathname = Astro.url.pathname,
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(pathname, SITE_URL).toString();
+const ogImage = new URL(image, SITE_URL).toString();
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Mondo Creatures',
+  url: SITE_URL,
+  description,
+  inLanguage: 'en',
+};
+
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Mondo Creatures',
+  url: SITE_URL,
+  logo: `${SITE_URL}/favicon.svg`,
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    }
+
+    <meta name="theme-color" content="#06060c" />
+    <meta name="color-scheme" content="dark" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {/* TODO: gerar favicon.ico e apple-touch-icon.png a partir do SVG mais tarde. */}
+
+    {/* Open Graph */}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mondo Creatures" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    {/* Twitter / X */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {/* JSON-LD — is:inline impede o Astro de processar como bundle JS */}
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteJsonLd)}></script>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(orgJsonLd)}></script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #06060c;
+    --bg-2: #0a0a14;
+    --bg-3: #11111e;
+    --fg: #e8e8f0;
+    --fg-dim: #9a9ab0;
+    --accent: #00e5ff;
+    --accent-2: #ff2bd6;
+    --accent-3: #7b2bff;
+    --line: rgba(255, 255, 255, 0.08);
+    --max-w: 1200px;
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  img, video, svg { max-width: 100%; height: auto; display: block; }
+
+  a { color: inherit; text-decoration: none; }
+
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  p { margin: 0; }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>

@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Internal handoff docs (not for public repo)
+HANDOFF_*.md

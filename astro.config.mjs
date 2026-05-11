@@ -17,7 +17,7 @@ export default defineConfig({
 
   build: {
     // 'auto' inlinea CSS pequeno e externaliza o resto — bom pro Core Web Vitals.
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
 
   // Comprime o HTML final removendo whitespace desnecessário.
